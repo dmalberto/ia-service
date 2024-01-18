@@ -1,24 +1,25 @@
 # docker-compose.yml
 version: "3.8"
 services:
-  web:
-    build: .
-    ports:
-      - "5000:5000"
-    volumes:
-      - .:/app
-    depends_on:
-      - db
-  db:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: ia-service
-      POSTGRES_USER: alan_kardek
-      POSTGRES_PASSWORD: 12345678
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    web:
+        build: .
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/app
+        depends_on:
+            - db
+    db:
+        image: postgres:latest
+        environment:
+            POSTGRES_DB: ia-service
+            POSTGRES_USER: alan_kardek
+            POSTGRES_PASSWORD: 12345678
+            DB_URL: postgresql://alan_kardek:12345678@postgres/ia-service
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+    postgres_data:

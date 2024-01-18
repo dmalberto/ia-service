@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+    app:
+        build:
+            context: ..
+            dockerfile: .devcontainer/Dockerfile
+        volumes:
+            - ..:/workspace
+        environment:
+            DB_HOST: db
+            DB_USER: alan_kardek
+            DB_PASS: 12345678
+            DB_NAME: ia-service
+        depends_on:
+            - db
+
+    db:
+        image: postgres
+        environment:
+            POSTGRES_USER: alan_kardek
+            POSTGRES_PASSWORD: 12345678
+            POSTGRES_DB: ia-service
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+
+volumes:
+    postgres-data:
