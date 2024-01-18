@@ -1,0 +1,27 @@
+// .devcontainer/devcontainer.json
+{
+    "name": "Python & PostgreSQL",
+    "dockerFile": "Dockerfile",
+    "appPort": [
+        5000
+    ],
+    "extensions": [
+        "ms-python.python"
+    ],
+    "postCreateCommand": "echo 'Container pronto!'",
+    "runArgs": [
+        "--network",
+        "devcontainer_default",
+        "--env",
+        "DB_HOST=postgres",
+        "--env",
+        "DB_USER=alan_kardek",
+        "--env",
+        "DB_PASS=12345678",
+        "--env",
+        "DB_NAME=ia-service"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    }
+}
